@@ -1,9 +1,5 @@
 import ipaddress
 
-def main():
-    if __name__ == "__main__":
-        main()
-
 def ip_mask2bin (ip, flag): # Ip - адрес или маска в двоичном виде
     if (flag == True):
         temp = str(bin(int(ip))[2:])
@@ -58,18 +54,21 @@ def hosts_count (mask): # Количество хостов
     return hosts
 
 
-# Начало кода
-print("Введите IP - адрес и маску (Пример: 172.16.0.1/25): ")
-try:
-    ip_v4 = ipaddress.ip_interface(input())
+def main():
+    print("Введите IP - адрес и маску (Пример: 172.16.0.1/25): ")
+    try:
+        ip_v4 = ipaddress.ip_interface(input())
 
-    print(f'IP адрес: {str(ip_v4.ip)} | {ip_mask2bin(ip_v4.ip, True)}')
-    print(f'Маска подсети: {str(ip_v4.netmask)} | {ip_mask2bin(ip_v4.netmask, True)}')
-    wildcard(ip_v4.netmask)
-    net_ip_broadcast(ip_v4.ip, ip_v4.netmask)
-    print(f'Количество хостов: {hosts_count(ip_v4.netmask)}')
-    input()
+        print(f'IP адрес: {str(ip_v4.ip)} | {ip_mask2bin(ip_v4.ip, True)}')
+        print(f'Маска подсети: {str(ip_v4.netmask)} | {ip_mask2bin(ip_v4.netmask, True)}')
+        wildcard(ip_v4.netmask)
+        net_ip_broadcast(ip_v4.ip, ip_v4.netmask)
+        print(f'Количество хостов: {hosts_count(ip_v4.netmask)}')
+        input()
 
 
-except ValueError:
-    print("Вы ввели неверный адрес, повторите ввод.")
+    except ValueError:
+        print("Вы ввели неверный адрес, повторите ввод.")
+
+if __name__ == "__main__":
+    main()
